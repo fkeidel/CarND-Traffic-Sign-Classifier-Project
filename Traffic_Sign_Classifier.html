@@ -15837,7 +15837,7 @@ Test Accuracy = 0.933
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[150]:</div>
+<div class="prompt input_prompt">In&nbsp;[192]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -15857,7 +15857,7 @@ Test Accuracy = 0.933
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[150]:</div>
+<div class="prompt output_prompt">Out[192]:</div>
 
 
 
@@ -15921,7 +15921,7 @@ Test Accuracy = 0.933
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[183]:</div>
+<div class="prompt input_prompt">In&nbsp;[193]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># read new images</span>
@@ -15964,7 +15964,7 @@ Test Accuracy = 0.933
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[184]:</div>
+<div class="prompt input_prompt">In&nbsp;[194]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># plot images</span>
@@ -16390,7 +16390,7 @@ BgYjhlloDQwMDEYMs9AaGBgYjBhmoTUwMDAYMf4FFD37cHf/Tj8AAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[185]:</div>
+<div class="prompt input_prompt">In&nbsp;[195]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># preprocess images</span>
@@ -16698,13 +16698,15 @@ YcOGjQGGPdHasGHDxgDDnmht2LBhY4Dx/38749R1QEzFAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[191]:</div>
+<div class="prompt input_prompt">In&nbsp;[196]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># prediction</span>
 <span class="n">prediction_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span>
+    <span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">import_meta_graph</span><span class="p">(</span><span class="s1">&#39;./lenet.meta&#39;</span><span class="p">)</span>
+    <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s2">&quot;./lenet&quot;</span><span class="p">)</span>
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">prediction_operation</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">X_new_images</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
     <span class="k">for</span> <span class="n">pred</span> <span class="ow">in</span> <span class="n">predictions</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">sign_names</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">pred</span><span class="p">,</span><span class="s1">&#39;SignName&#39;</span><span class="p">])</span>
@@ -16724,11 +16726,12 @@ YcOGjQGGPdHasGHDxgDDnmht2LBhY4Dx/38749R1QEzFAAAAAElFTkSuQmCC
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>38 Keep right
-38 Keep right
-38 Keep right
-2 Speed limit (50km/h)
-2 Speed limit (50km/h)
+<pre>INFO:tensorflow:Restoring parameters from ./lenet
+17 No entry
+11 Right-of-way at the next intersection
+3 Speed limit (60km/h)
+32 End of all speed and passing limits
+13 Yield
 </pre>
 </div>
 </div>
@@ -16747,14 +16750,35 @@ YcOGjQGGPdHasGHDxgDDnmht2LBhY4Dx/38749R1QEzFAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[200]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Calculate the accuracy for these 5 new images. </span>
 <span class="c1">### For example, if the model predicted 1 out of 5 signs correctly, it&#39;s 20% accurate on these new images.</span>
+<span class="n">num_predicted_correctly</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">prediction_accuracy</span> <span class="o">=</span> <span class="n">num_predicted_correctly</span> <span class="o">/</span> <span class="n">num_images</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prediction_accuracy</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>100.0 %
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -16805,14 +16829,47 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[211]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Print out the top five softmax probabilities for the predictions on the German traffic sign images found on the web. </span>
 <span class="c1">### Feel free to use as many code cells as needed.</span>
+<span class="n">top_5_softmax</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">top_k</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span>
+    <span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">import_meta_graph</span><span class="p">(</span><span class="s1">&#39;./lenet.meta&#39;</span><span class="p">)</span>
+    <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s2">&quot;./lenet&quot;</span><span class="p">)</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">top_5_softmax</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">X_new_images</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span> <span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>INFO:tensorflow:Restoring parameters from ./lenet
+TopKV2(values=array([[  9.99975801e-01,   2.37415625e-05,   2.04866183e-07],
+       [  9.94199872e-01,   5.79575449e-03,   4.06960771e-06],
+       [  9.99998450e-01,   8.99034603e-07,   6.16809984e-07],
+       [  9.99120176e-01,   6.23018306e-04,   2.56789499e-04],
+       [  9.99999762e-01,   2.65928634e-07,   6.20308582e-10]], dtype=float32), indices=array([[17, 14, 33],
+       [11, 30, 27],
+       [ 3,  2,  5],
+       [32, 41,  6],
+       [13, 15, 35]]))
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
