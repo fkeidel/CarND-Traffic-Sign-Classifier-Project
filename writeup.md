@@ -24,7 +24,7 @@ The goals / steps of this project are the following:
 [new_samples_preprocessed]: ./writeup-images/writeup_new_samples_preprocesses.png "new samples preprocessed"
 [visualization_input]: ./writeup-images/writeup_visualization_input.png "visualization input"
 [visualization_layer1]: ./writeup-images/writeup_visualization_layer1.png "visualization layer 1"
-[visualization_layer2.png]: ./writeup-images/writeup_visualization_layer2.png "visualization layer2"
+[visualization_layer2]: ./writeup-images/writeup_visualization_layer2.png "visualization layer2"
 
 ## Rubric Points
 
@@ -38,9 +38,9 @@ This is the writeup for the project *Traffic Sign Classifier*. Here you can find
 
 #### 1. Provide a basic summary of the data set.
 
-* The size of training set is 34799
+* The size of the training set is 34799
 * The size of the validation set is 4410
-* The size of test set is 12630
+* The size of the test set is 12630
 * The shape of a traffic sign image is (32, 32)
 * The number of unique classes/labels in the data set is 43
 
@@ -142,7 +142,7 @@ The first image might be difficult to classify because the road sign's orientati
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. 
 
-The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%. This is better than the accuray on the test set.
+The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%. This is better than the accuracy on the test set.
 
 Detected road signs:
 1. No entry
@@ -166,7 +166,7 @@ Suprisingly, the first sign has a high probability for the correct class (99.6%)
 ### (Optional) Visualizing the Neural Network 
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
-For visualizing the feature maps of the convolution layers, I selected the seconde image of the new images (Right-of-way at the next intersection)
+For visualizing the feature maps of the convolution layers, I selected the second image of the new images (Right-of-way at the next intersection)
 
 ![alt text][visualization_input]
 
