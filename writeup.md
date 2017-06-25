@@ -51,33 +51,31 @@ For a first impression, I printed out 20 random samples of the training set:
 
 ![alt text][random_train]
 
-To see, how many samples from each class label exist in the training set, I printed out a histogram.
+As can be seen from above, the training samples contain many images with bad contrast (i.e. dark or 'foggy').
+
+To see, how many samples from each class exist in the training set, I printed out a histogram.
 
 ![alt text][samples_distribution]
 
-The histogram shows the samples distribution. As can be seen from the diagram, the samples of each class have not the same count. This could lead to a bias to recognizing better the classes with higher sample count.
+The histogram shows the samples distribution. As can be seen from the diagram, the samples of each class have not the same sample count. This could lead to a bias to recognizing better the classes with higher sample count.
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
-####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+#### 1. Describe how you preprocessed the image data. 
 
-As a first step, I decided to convert the images to grayscale because ...
+What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-Here is an example of a traffic sign image before and after grayscaling.
+As a first step, I decided to convert the images to grayscale, because in the paper [Trafﬁc Sign Recognition with Multi-Scale Convolutional Networks](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) the authors mentioned, that they had better results of their CNN model with grayscale images.
 
-![alt text][image2]
+![alt text][grayscale]
 
-As a last step, I normalized the image data because ...
+As mentioned above, many images of the training set have bad contrast. So, as a second preprocessing step, I improved contrast and brightness by equalizing the gray values in the images with the funcition cv2.equalizeHist(). As a human, it is easier to recognize images with a good contrast. So I suppose, it is easier for Neural Networks, too.
 
-I decided to generate additional data because ... 
+![alt text][equalized]
 
-To add more data to the the data set, I used the following techniques because ... 
+As a last step, I normalized the gray values of all images to lie in a symmetric range [-1,1]. 
 
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
+The preprocessing steps increase my model performance around 3 %.
 
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
