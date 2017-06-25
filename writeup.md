@@ -87,7 +87,7 @@ My final model consisted of the following layers:
 | Max pooling	      	| 2x2 stride,  valid padding, output 14x14x6 				|
 | Convolution 5x5	    | 1x1 stride, valid padding, output 10x10x16     									|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  valid padding, output 14x14x6 				|
+| Max pooling	      	| 2x2 stride,  valid padding, output 5x5x16 				|
 | flatten | output 400 |
 | Fully connected		1 | input = 400, output = 120	|
 | RELU					|												|
@@ -95,32 +95,36 @@ My final model consisted of the following layers:
 | Fully connected		2 | Input = 120, output = 84	|
 | RELU					|												|
 | Dropout					| keep prob = 0.5 during training			|
-| Fully connected		2 | Input = 84, output = 43	|
+| Fully connected		3 | Input = 84, output = 43	|
 | Softmax				|         									|
  
-#### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+#### 3. Describe how you trained your model. 
 
-To train the model, I used an ....
+To train the model, I calculated the cross-entropy of the calculated logits and the one-hot-encoded class labels. As a loss function, I used the mean of the entropies of all classes. As optimizer, I used the AdamOptimizer. 
 
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+The starting values for the hyperparameters were:
+Epochs = 10
+Batch size = 128.
+Learning rate = 0.001
+
+#### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. 
+
+As a starting point, I used the LeNet convolutional network architecture, consisting of 2 convolutional layers and 3 fully connected layers. The LeNet architecture, with the starting values of the hyperparameters had a performance of 87%.
+
+By lowering the batch size form 128 to 64, I increased the model performance by 3% to 90%.
+
+Preprocessing the images (grayscale and normalization to a symmetric range of [-1,1]) increase the performance by 2% to 92%.
+
+As a further improvement, I used 50% dropout in the fully connected layers during training. This increased the model performance by 3% to 95%.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 95%
+* validation set accuracy of 95% 
+* test set accuracy of 93.4%
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+The following figure shows the training process with the final architecture and hyperparameters:
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+![alt text][training_process]
 
 ###Test a Model on New Images
 
