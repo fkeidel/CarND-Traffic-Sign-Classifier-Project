@@ -63,7 +63,7 @@ The histogram shows the samples distribution. As can be seen from the diagram, t
 
 #### 1. Describe how you preprocessed the image data. 
 
-As a first step, I decided to convert the images to grayscale, because in the paper [Trafﬁc Sign Recognition with Multi-Scale Convolutional Networks](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) the authors mentioned, that they had better results of their CNN model with grayscale images.
+As a first step, I decided to convert the images to grayscale, because in the paper [Trafﬁc Sign Recognition with Multi-Scale Convolutional Networks](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) the authors mentioned, that they had better results of their CNN model with grayscale images. Although, using grayscale showed no significant effect during training, I kept the grayscaling step because it reduces the number of weights in the first network layer.
 
 ![alt text][grayscale]
 
@@ -110,6 +110,8 @@ Learning rate = 0.001
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. 
 
 As a starting point, I used the LeNet convolutional network architecture, consisting of 2 convolutional layers and 3 fully connected layers. The LeNet architecture, with the starting values of the hyperparameters, had a performance of 87%.
+
+Then, for each hyperparameter, I increased the parameter a little bit and measured the validation performance. I the result was better than the previous one, I increase the parameter even more until it reached a maximum. If increasing the hyperparamter didn't increase the result, I went in the opposite direction and decreased the parameter starting from the initial value until the maximum found.
 
 Lowering the batch size from 128 to 64, increased the model performance by 3% to 90%.
 
