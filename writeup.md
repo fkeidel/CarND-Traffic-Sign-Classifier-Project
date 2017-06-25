@@ -15,14 +15,16 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[random_train]: ./writeup-images/writeup_20_random_train_samples.png "20 random train samples"
+[samples_distribution]: ./writeup-images/writeup_samples_distribution.png "train samples distribution"
+[grayscale]: ./writeup-images/writeup_grayscale.png "grayscale"
+[equalized]: ./writeup-images/writeup_equalize.png "equalized"
+[training_process]: ./writeup-images/writeup_training_process.png "training process"
+[new_samples]: ./writeup-images/writeup_new_samples.png "new samples"
+[new_samples_preprocessed]: ./writeup-images/writeup_new_samples_preprocesses.png "new samples preprocessed"
+[visualization_input]: ./writeup-images/writeup_visualization_input.png "visualization input"
+[visualization_layer1]: ./writeup-images/writeup_visualization_layer1.png "visualization layer 1"
+[visualization_layer2.png]: ./writeup-images/writeup_visualization_layer2.png "visualization layer2"
 
 ## Rubric Points
 
