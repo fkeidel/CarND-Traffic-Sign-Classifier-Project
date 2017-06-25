@@ -30,16 +30,13 @@ The goals / steps of this project are the following:
 
 ### Writeup
 
-#### 1. Provide a Writeup that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+#### 1. Provide a Writeup that includes all the rubric points and how you addressed each one. 
 
-You're reading it! and here is a link to my [project code](https://github.com/fkeidel/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+This is the writeup for the project *Traffic Sign Classifier*. Here you can find the [project code](https://github.com/fkeidel/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb).
 
 ### Data Set Summary & Exploration
 
-#### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
-
-I used the pandas library to calculate summary statistics of the traffic
-signs data set:
+#### 1. Provide a basic summary of the data set.
 
 * The size of training set is 34799
 * The size of the validation set is 4410
@@ -49,9 +46,16 @@ signs data set:
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set. 
+For a first impression, I printed out 20 random samples of the training set:
 
-![alt text][image1]
+![alt text][random_train]
+
+To see, how many samples from each class label exist in the training set, I printed out a histogram.
+
+![alt text][samples_distribution]
+
+The histogram shows the samples distribution. As can be seen from the diagram, the samples of each class have not the same count. This could lead to a bias to recognizing better the classes with higher sample count.
 
 ###Design and Test a Model Architecture
 
