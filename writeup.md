@@ -109,13 +109,13 @@ Learning rate = 0.001
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. 
 
-As a starting point, I used the LeNet convolutional network architecture, consisting of 2 convolutional layers and 3 fully connected layers. The LeNet architecture, with the starting values of the hyperparameters had a performance of 87%.
+As a starting point, I used the LeNet convolutional network architecture, consisting of 2 convolutional layers and 3 fully connected layers. The LeNet architecture, with the starting values of the hyperparameters, had a performance of 87%.
 
-By lowering the batch size form 128 to 64, I increased the model performance by 3% to 90%.
+Lowering the batch size from 128 to 64, increased the model performance by 3% to 90%.
 
-Preprocessing the images (grayscale and normalization to a symmetric range of [-1,1]) increase the performance by 2% to 92%.
+Preprocessing the images (grayscale and normalization to a symmetric range of [-1,1]) further increased the performance by 2% to 92%.
 
-As a further improvement, I used 50% dropout in the fully connected layers during training. This increased the model performance by 3% to 95%.
+As additional improvement, I used 50% dropout in the fully connected layers during training. This increased the model performance by 3% to 95%.
 
 My final model results were:
 * training set accuracy of 95%
@@ -126,50 +126,56 @@ The following figure shows the training process with the final architecture and 
 
 ![alt text][training_process]
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+Here are five German traffic signs that I found on the web. 
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][new_samples]
 
-The first image might be difficult to classify because ...
+I used the same preprocessing steps as when training the network.
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+![alt text][new_samples_preprocessed]
 
-Here are the results of the prediction:
+The first image might be difficult to classify because the road sign's orientation is not perpendicular to the optical axis. The other signs should have no problems to be recognized.
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. 
 
+The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%. This is better than the accuray on the test set.
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+Detected road signs:
+1. No entry
+2. Right-of-way at the next intersection
+3. Speed limit (60km/h)
+4. End of all speed and passing limits
+5. Yield
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
-
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| 99.6%         			| No entry   									| 
+| 94.5%     				| Right-of-way at the next intersection										|
+| 77.0%					| Speed limit (60km/h)										|
+| 90.6%      			| End of all speed and passing limits				 				|
+| 100%				    | Yield    							|
 
+Suprisingly, the first sign has a high probability for the correct class (99.6%) even if the orientation of the sign was not optimal. A very high probability of nearly 100% showed the Yield sign.
 
-For the second image ... 
+### (Optional) Visualizing the Neural Network 
+#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
+For visualizing the feature maps of the convolution layers, I selected the seconde image of the new images (Right-of-way at the next intersection)
 
+![alt text][visualization_input]
 
+The feature map of the first layer looked like this:
+
+![alt text][visualization_layer1]
+
+And the feature map of the second layer showed up like this:
+
+![alt text][visualization_layer2]
+
+The feature map of the first layer shows significant shapes in the input image (lines). The feature map of the second layer is difficult to interpret.
